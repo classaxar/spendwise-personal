@@ -1,7 +1,9 @@
 import { useState, useMemo, useEffect } from "react";
+
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, writeBatch } from "firebase/firestore";
 
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 // ─── FIREBASE CONFIG ──────────────────────────────────────────────────────────
 // Replace these values with your own from Firebase Console
 // (Project Settings → Your apps → SDK setup → Config)
@@ -18,7 +20,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 // ─────────────────────────────────────────────────────────────────────────────
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 
 // ─── BUDGET RULES (Father's System) ───────────────────────────────────────────
 // Total from Father : ₹40,000 / month
