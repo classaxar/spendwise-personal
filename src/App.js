@@ -13,7 +13,6 @@ import {
 } from "firebase/firestore";
 
 import {
-  auth,
   loginWithGoogle,
   loginWithEmail,
   logout,
