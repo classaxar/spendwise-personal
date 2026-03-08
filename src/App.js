@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { initializeApp } from "firebase/app";
 import {
-  getFirestore,
   collection,
   addDoc,
   deleteDoc,
@@ -12,6 +10,7 @@ import {
   orderBy
 } from "firebase/firestore";
 
+import { db, isFirebaseConfigured } from "./firebase";
 import {
   loginWithGoogle,
   loginWithEmail,
@@ -28,18 +27,6 @@ import {
 } from "recharts";
 
 import "./App.css";
-
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 const categories = [
   { name: "Food", color: "#f97316", icon: "🍔" },
@@ -148,6 +135,18 @@ export default function App() {
       color: categories.find((c) => c.name === name)?.color || "#888"
     }));
   }, [transactions]);
+
+  if (!isFirebaseConfigured) {
+    return (
+      <div className="login-container">
+        <div className="login-card glass-panel" style={{ color: "white", padding: "40px 20px" }}>
+          <h2 style={{ color: "#ff7b72", margin: "0 0 10px 0" }}>⚠️ Missing Keys</h2>
+          <p style={{ margin: "0 0 15px 0" }}>It looks like your Firebase secure keys haven't been added to Vercel yet.</p>
+          <p style={{ color: "#8b949e", fontSize: "0.9rem", margin: 0 }}>Please go to Vercel &gt; Settings &gt; Environment Variables and add all REACT_APP_FIREBASE keys. Then, click on "Deployments" and redeploy your app.</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!user) {
     return (
