@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/spendwise-personal/static/css/main.00792cac.css",
+    "main.js": "/spendwise-personal/static/js/main.f25a8c4f.js",
+    "index.html": "/spendwise-personal/index.html",
+    "main.00792cac.css.map": "/spendwise-personal/static/css/main.00792cac.css.map",
+    "main.f25a8c4f.js.map": "/spendwise-personal/static/js/main.f25a8c4f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.00792cac.css",
+    "static/js/main.f25a8c4f.js"
+  ]
+}
